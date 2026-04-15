@@ -71,8 +71,6 @@ def validate(data):
     valid_records = []
     dropped_records = []
 
-    # TODO: Lap qua data, kiem tra tung record
-    # Giu lai record hop le, dem record loi
     for record in data:
         # Check Price
         if record.get('price', 0) <= 0:
@@ -85,8 +83,10 @@ def validate(data):
             continue
 
         valid_records.append(record)
-    error_count = len(dropped_records)
-    print(f"Validation complete. Valid: {len(valid_records)}, Errors: {error_count}")
+
+    print(f"Validation summary: {len(valid_records)} kept, {len(dropped_records)} dropped.")
+    if dropped_records:
+        print(f"Errors found: {dropped_records}")
     return valid_records
 
 
